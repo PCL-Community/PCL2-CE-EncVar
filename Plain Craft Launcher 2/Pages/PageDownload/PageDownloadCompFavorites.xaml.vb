@@ -19,7 +19,7 @@
     Private Function LoaderInput() As List(Of String)
         Dim TargetList As List(Of String)
         Try
-            TargetList = CurrentFavTarget.Favs
+            TargetList = CurrentFavTarget.Favs.Distinct().ToList()
         Catch ex As Exception
             Log(ex, "[Favorites] 加载收藏夹列表时出错")
         End Try
@@ -585,7 +585,7 @@
 
     Private Sub HintGetFail_MouseLeftButtonDown(sender As Object, e As MouseButtonEventArgs) Handles HintGetFail.MouseLeftButtonDown
         Dim Content As String = "由于在线资源被删除或者网络问题等因素导致以下资源未获取成功（以资源的 ID 展示）" & vbCrLf & vbCrLf
-        Dim FailIds = Loader.Input.Except(Loader.Output.Select(Function(i) i.Id))
+        Dim FailIds As List(Of String) = Loader.Input.Except(Loader.Output.Select(Function(i) i.Id).ToList()).ToList()
         For Each Id In FailIds
             Content &= $" - {Id}" & vbCrLf
         Next
@@ -600,6 +600,7 @@
                                     For Each Id In FailIds
                                         CurrentFavTarget.Favs.Remove(Id)
                                     Next
+                                    CompFavorites.Save()
                                     Hint("已移除相关收藏", HintType.Finish)
                                 End Sub)
     End Sub
