@@ -597,36 +597,6 @@ PCL-Community 及其成员与龙腾猫跃无从属关系，且均不会为您的
         Select Case Setup.Get("SystemSystemUpdate")
             Case 0
                 UpdateLatestVersionInfo()
-                If LatestVersionCode > VersionCode Then
-                    UpdateStart(LatestVersion, True) '静默更新
-                End If
-            Case 1
-                UpdateLatestVersionInfo()
-                NoticeUserUpdate(True)
-            Case 2, 3
-                Exit Sub
-        End Select
-    End Sub
-
-    Private Sub LoadOnlineInfo()
-        Select Case Setup.Get("SystemSystemUpdate")
-            Case 0
-                UpdateLatestVersionInfo()
-                If LatestVersionCode > VersionCode Then
-                    UpdateStart(LatestVersion, True) '静默更新
-                End If
-            Case 1
-                UpdateLatestVersionInfo()
-                NoticeUserUpdate(True)
-            Case 2, 3
-                Exit Sub
-        End Select
-    End Sub
-
-    Private Sub LoadOnlineInfo()
-        Select Case Setup.Get("SystemSystemUpdate")
-            Case 0
-                UpdateLatestVersionInfo()
                 If VersionBaseName <> LatestVersion Then
                     UpdateStart(LatestVersion, True) '静默更新
                 End If

@@ -2060,4 +2060,21 @@ PCL 不支持其他乱七八糟的下载协议。</s:String>
     <s:String x:Key="LangModExceptionRequestFailed">网络请求失败（{0}）</s:String>
     <s:String x:Key="LangModExceptionReturnErrorCode">服务器返回错误（{0}）</s:String>
     <s:String x:Key="LangModExceptionUnknownFileStatus">文件状态未知：{0}</s:String>
+    <!--Missing-->
+    <s:String x:Key="LangMyCardFailedToCallInstallMethod">Missing</s:String>
+    <s:String x:Key="LangModBaseExceptionOldSystem">Missing</s:String>
+    <s:String x:Key="LangPageNameResourcesDownload">Missing</s:String>
+    <s:String x:Key="LangPageNameShadersDownload">Missing</s:String>
+    <s:String x:Key="LangModMinecraftInvalidQuiltVersion">Missing</s:String>
+    <s:String x:Key="LangModMinecraftFoolName2.0RedVersion">Missing</s:String>
+    <s:String x:Key="LangModMinecraftFoolName2.0BlueVersion">Missing</s:String>
+    <s:String x:Key="LangModMinecraftFoolName2.0PurpleVersion">Missing</s:String>
+    <s:String x:Key="LangSelectVersionTypeQuilt">Missing</s:String>
+    <s:String x:Key="LangShader">Missing</s:String>
+    <s:String x:Key="LangDownloadUVMCProvided">Missing</s:String>
+    <s:String x:Key="LangModDownloadLibTaskMcModify">Missing</s:String>
+    <s:String x:Key="LangDownloadModLoaderIncompatible">Missing</s:String>
+    <s:String x:Key="LangDownloadInstallFabricOrQuiltNeed">Missing</s:String>
+    <s:String x:Key="LangLaunchRightCE">Missing</s:String>
+    <s:String x:Key="LangPageOtherAboutGithubProfileBtn">Missing</s:String>
 </ResourceDictionary>
