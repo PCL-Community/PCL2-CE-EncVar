@@ -1,9 +1,11 @@
 blank_issues_enabled: true
 contact_links:
-  - name: 主页预设反馈
+  - name: 主页预设反馈 | Homepage
     url: https://github.com/Hex-Dragon/PCL2/discussions/categories/自定义主页
-    about: 提交与预设的主页（设置 → 个性化 → 主页预设）中的具体内容相关的反馈
-  - name: 帮助文档反馈
+    about: |
+      提交与预设的主页（设置 → 个性化 → 主页预设）中的具体内容相关的反馈。
+      Submit feedback related to the specific content in the default homepage (Settings → Personalization → Presets).
+  - name: 帮助文档反馈 | Help Center
     url: https://github.com/LTCatt/PCL2Help/issues
     about: 提交与 PCL 帮助文档（更多 → 帮助）中的具体内容相关的反馈
   - name: 提问 / 讨论

@@ -48,7 +48,7 @@ Public Class PageOtherTest
     End Sub
 
     Public Shared Sub StartCustomDownload(Url As String, FileName As String, Optional Folder As String = Nothing)
-        Try
+        Try 'To be implemented
             If String.IsNullOrWhiteSpace(Folder) Then
                 Folder = SelectAs("选择文件保存位置", FileName, Nothing, Nothing)
                 If Not Folder.Contains("\") Then
@@ -81,10 +81,10 @@ Public Class PageOtherTest
         End Try
     End Sub
     Public Shared Sub Jrrp()
-        Hint("为便于维护，开源内容中不包含百宝箱功能……")
+        Hint(GetLang("LangPageOtherTestNoUtility"))
     End Sub
     Public Shared Sub RubbishClear()
-        RunInUi(
+        RunInUi( 'To be implemented
             Sub()
                 If Not IsNothing(FrmOtherTest) AndAlso Not IsNothing(FrmOtherTest.BtnClear) Then
                     FrmOtherTest.BtnClear.IsEnabled = False
@@ -176,18 +176,18 @@ Public Class PageOtherTest
             End Sub, "Rubbish Clear")
     End Sub
     Public Shared Sub MemoryOptimize(ShowHint As Boolean)
-        If ShowHint Then Hint("为便于维护，开源内容中不包含百宝箱功能……")
+        If ShowHint Then Hint(GetLang("LangPageOtherTestNoUtility"))
     End Sub
     Public Shared Sub MemoryOptimizeInternal(ShowHint As Boolean)
     End Sub
     Public Shared Function GetRandomCave() As String
-        Return "为便于维护，开源内容中不包含百宝箱功能……"
+        Return GetLang("LangPageOtherTestNoUtility")
     End Function
     Public Shared Function GetRandomHint() As String
-        Return "为便于维护，开源内容中不包含百宝箱功能……"
+        Return GetLang("LangPageOtherTestNoUtility")
     End Function
     Public Shared Function GetRandomPresetHint() As String
-        Return "为便于维护，开源内容中不包含百宝箱功能……"
+        Return GetLang("LangPageOtherTestNoUtility")
     End Function
 
     Private Sub TextDownloadUrl_TextChanged(sender As Object, e As TextChangedEventArgs)

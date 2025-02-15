@@ -114,7 +114,7 @@ Public Class MyCard
         Try
             InstallMethod(Stack)
         Catch ex As Exception
-            Log(ex, "[MyCard] InstallMethod 调用失败")
+            Log(ex, GetLang("LangMyCardFailedToCallInstallMethod"))
         End Try
         Stack.Children.Add(New FrameworkElement With {.Height = 18}) '下边距，同时适应折叠
         Stack.Tag = Nothing

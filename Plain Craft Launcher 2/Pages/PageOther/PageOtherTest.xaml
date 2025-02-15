@@ -7,7 +7,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     PanScroll="{Binding ElementName=PanBack}">
     <local:MyScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" x:Name="PanBack">
-        <StackPanel x:Name="PanMain" Margin="25,10" Grid.IsSharedSizeScope="True">
+        <StackPanel x:Name="PanMain" Margin="25,10" Grid.IsSharedSizeScope="True"> <!--To be implemented-->
             <local:MyCard Margin="0,15" Title="百宝箱">
                 <Grid Margin="25,40,21,20">
                     <Grid.RowDefinitions>

@@ -5,8 +5,10 @@ body:
 - type: checkboxes
   id: "yml-1"
   attributes:
-    label: "检查项"
-    description: "请逐个检查下列项目，并勾选确认。"
+    label: 检查项 Checklist
+    description: |
+      请逐个检查下列项目，并勾选确认。
+      Please review each of the following items individually and check to confirm.
     options:
     - label: "我已在 [官方版 Issues 页面](https://github.com/Hex-Dragon/PCL2/issues?q=is%3Aissue+) 和 [官方版功能投票页面](https://github.com/Hex-Dragon/PCL2/discussions/categories/%E5%8A%9F%E8%83%BD%E6%8A%95%E7%A5%A8/) 中搜索，已确认官方版不计划处理这个内容。"
     - label: "我已在 [社区版 Issues 页面](https://github.com/PCL-Community/PCL2-CE/issues?q=is%3Aissue+) 中搜索，确认了这一建议未在社区版被提交过。"
@@ -22,17 +24,29 @@ body:
 - type: textarea
   id: "yml-3"
   attributes:
-    label: 描述
-    description: "详细描述你想添加的功能具体是怎样的。"
+    label: "官方版原 Issue 编号"
+    description: "如果这个 Issue 是从官方版转交过来的，请将原 Issue 标题旁的**编号**输入到下方预设文本的`#`后，不要输入任何其他非数字字符。若不是，请清空下方输入框。"
+    value: "- Hex-Dragon/PCL2#"
+- type: textarea
+  id: "yml-3" 
+  attributes:
+    label: 描述 Description
+    description: |
+      详细描述你想添加的功能具体是怎样的。
+      Provide a detailed description of the specific functionality you want to add.
   validations:
     required: true
 - type: textarea
   id: "yml-4"
   attributes:
-    label: 原因
-    description: "详细描述你为什么需要这项功能，这有助于开发者评估它的优先度。"
+    label: 原因 Reason
+    description: |
+      详细描述你为什么需要这项功能，这有助于开发者评估它的优先度。
+      Provide a detailed explanation of why you need this feature. This will help the developers assess its priority.
     value: |
       （示例）
       我需要这个功能来xxxx。很多人都有xxxx的需求，但如果没有这个功能，就不能xxxx了。
+      (Sample)  
+      I need this feature to xxxx. Many people have the need for xxxx, but without this feature, they won't be able to xxxx.
   validations:
     required: true

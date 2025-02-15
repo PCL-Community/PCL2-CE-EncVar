@@ -7,8 +7,8 @@
         PanLog.Visibility = If(ModeDebug, Visibility.Visible, Visibility.Collapsed)
         '社区版提示
         PanHint.Visibility = If(Setup.Get("UiLauncherCEHint"), Visibility.Visible, Visibility.Collapsed)
-        LabHint1.Text = "社区版包含未在官方主线版本发布的功能，仅用于尝鲜。请不要向官方仓库反馈社区版的问题哦！"
-        LabHint2.Text = $"若要永久隐藏此提示，请自行查阅代码中的相关部分。"
+        LabHint1.Text = GetLang("LangLaunchRightLabHint1")
+        LabHint2.Text = GetLang("LangLaunchRightLabHint2")
     End Sub
 
     '暂时关闭快照版提示
@@ -55,7 +55,7 @@ Download:
                 Else
                     '缓存不可用
                     Log("[Page] 主页自定义数据来源：联网全新下载")
-                    Hint("正在加载主页……")
+                    Hint(GetLang("LangLaunchRightLoadingPage"))
                     RunInUiWait(Sub() LoadContent("")) '在加载结束前清空页面
                     Setup.Set("CacheSavedPageVersion", "")
                     OnlineLoader.Start(Url) '下载完成后将会再次触发更新
@@ -66,7 +66,7 @@ Download:
                     Case 0
                         Log("[Page] 主页预设：你知道吗")
                         Content = "
-                            <local:MyCard Title=""你知道吗？"" Margin=""0,0,0,15"">
+                            <local:MyCard Title=""{StaticResource LangLaunchRightPageTips}"" Margin=""0,0,0,15"">
                                 <TextBlock Margin=""25,38,23,15"" FontSize=""13.5"" IsHitTestVisible=""False"" Text=""{hint}"" TextWrapping=""Wrap"" Foreground=""{DynamicResource ColorBrush1}"" />
                                 <local:MyIconButton Height=""22"" Width=""22"" Margin=""9"" VerticalAlignment=""Top"" HorizontalAlignment=""Right"" 
                                     EventType=""刷新主页"" EventData=""/""
@@ -75,7 +75,7 @@ Download:
                     Case 1
                         Log("[Page] 主页预设：回声洞")
                         Content = "
-                            <local:MyCard Title=""回声洞"" Margin=""0,0,0,15"">
+                            <local:MyCard Title=""{StaticResource LangLaunchRightPageEcho}"" Margin=""0,0,0,15"">
                                 <TextBlock Margin=""25,38,23,15"" FontSize=""13.5"" IsHitTestVisible=""False"" Text=""{cave}"" TextWrapping=""Wrap"" Foreground=""{DynamicResource ColorBrush1}"" />
                                 <local:MyIconButton Height=""22"" Width=""22"" Margin=""9"" VerticalAlignment=""Top"" HorizontalAlignment=""Right"" 
                                     EventType=""刷新主页"" EventData=""/""

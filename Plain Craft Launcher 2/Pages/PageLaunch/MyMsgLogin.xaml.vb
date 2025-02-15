@@ -23,7 +23,7 @@
             OAuthUrl = Converter.AuthUrl
             Init()
         Catch ex As Exception
-            Log(ex, "登录弹窗初始化失败", LogLevel.Hint)
+            Log(ex, GetLang("LangMyMsgLoginHintInitFail"), LogLevel.Hint)
         End Try
     End Sub
 
@@ -98,7 +98,7 @@
             $"你也可以用其他设备打开 {Website} 并输入上述授权码。"
         End If
         '设置 UI
-        LabTitle.Text = "登录 Minecraft"
+        LabTitle.Text = GetLang("LangMyMsgLoginDialogTitleLoginMc")
         Btn1.EventData = Website
         Btn2.EventData = UserCode
         '启动工作线程
@@ -133,15 +133,15 @@
                 '获取结果
                 Dim ResultJson As JObject = GetJson(Result)
                 McLaunchLog($"令牌过期时间：{ResultJson("expires_in")} 秒")
-                Hint("网页登录成功！", HintType.Finish)
+                Hint(GetLang("LangMyMsgLoginHintLoginSuccess"), HintType.Finish)
                 Finished({ResultJson("access_token").ToString, ResultJson("refresh_token").ToString})
                 Return
             Catch ex As Exception
                 If ex.Message.Contains("authorization_declined") Or ex.Message.Contains("access_denied") Then
-                    Finished(New Exception("$你拒绝了 PCL 申请的权限……"))
+                    Finished(New Exception("$" & GetLang("LangMyMsgLoginExceptionDecline")))
                     Return
                 ElseIf ex.Message.Contains("expired_token") Then
-                    Finished(New Exception("$登录用时太长啦，重新试试吧！"))
+                    Finished(New Exception("$" & GetLang("LangMyMsgLoginExceptionTimeout")))
                     Return
                 ElseIf ex.Message.Contains("AADSTS70000") Then '可能不能判 “invalid_grant”，见 #269
                     Finished(New RestartException)
@@ -153,7 +153,7 @@
                     Log(ex, $"登录轮询第 {UnknownFailureCount} 次失败")
                     Thread.Sleep(2000)
                 Else
-                    Finished(New Exception("登录轮询失败", ex))
+                    Finished(New Exception(GetLang("LangMyMsgLoginExceptionCheckFail"), ex))
                     Return
                 End If
             End Try

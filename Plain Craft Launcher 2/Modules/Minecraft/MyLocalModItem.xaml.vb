@@ -322,7 +322,7 @@ Public Class MyLocalModItem
             NewestName = Join(NewestSegs, "-")
             Entry._Version = CurrentName '使用网络信息作为显示的版本号
         End If
-        Return $"当前版本：{CurrentName}（{GetTimeSpanString(Entry.CompFile.ReleaseDate - Date.Now, False)}）{vbCrLf}最新版本：{NewestName}（{GetTimeSpanString(Entry.UpdateFile.ReleaseDate - Date.Now, False)}）"
+        Return GetLang("LangMyLocalModItemToolTipModUpdate", CurrentName, GetTimeSpanString(Entry.CompFile.ReleaseDate - Date.Now, False), NewestName, GetTimeSpanString(Entry.UpdateFile.ReleaseDate - Date.Now, False))
     End Function
     Public Sub Refresh() Handles Me.Loaded
         RunInUi(
@@ -330,7 +330,7 @@ Public Class MyLocalModItem
             '更新
             If Entry.CanUpdate Then
                 BtnUpdate.Visibility = Visibility.Visible
-                BtnUpdate.ToolTip = $"{GetUpdateCompareDescription()}{vbCrLf}点击以更新，右键查看更新日志。"
+                BtnUpdate.ToolTip = $"{GetUpdateCompareDescription()}{vbCrLf}{GetLang("LangMyLocalModItemToolTipModUpdateUpgradable")}"
             Else
                 BtnUpdate.Visibility = Visibility.Collapsed
             End If
@@ -378,7 +378,7 @@ Public Class MyLocalModItem
             ElseIf Entry.Description IsNot Nothing Then
                 NewDescription += ": " & Entry.Description.Replace(vbCr, "").Replace(vbLf, "")
             ElseIf Not Entry.IsFileAvailable Then
-                NewDescription += ": " & "存在错误，无法获取信息"
+                NewDescription += ": " & GetLang("LangMyLocalModItemFailGetModInfo")
             End If
             Description = NewDescription
             If Checked Then
@@ -472,7 +472,7 @@ Public Class MyLocalModItem
         If CurseForgeUrl Is Nothing OrElse ModrinthUrl Is Nothing Then
             OpenWebsite(Entry.ChangelogUrls.First)
         Else
-            Select Case MyMsgBox("要在哪个网站上查看更新日志？", "查看更新日志", "Modrinth", "CurseForge", "取消")
+            Select Case MyMsgBox(GetLang("LangMyLocalModItemDialogContentOpenChangelog"), GetLang("LangMyLocalModItemDialogTitleOpenChangelog"), "Modrinth", "CurseForge", GetLang("LangDialogBtnCancel"))
                 Case 1
                     OpenWebsite(ModrinthUrl)
                 Case 2
@@ -483,7 +483,7 @@ Public Class MyLocalModItem
 
     '触发更新
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
-        Select Case MyMsgBox($"是否要更新 {Entry.Name}？{vbCrLf}{vbCrLf}{GetUpdateCompareDescription()}", "Mod 更新确认", "更新", "查看更新日志", "取消")
+        Select Case MyMsgBox(GetLang("LangMyLocalModItemDialogContentUpdateConfirm", Entry.Name, GetUpdateCompareDescription()), GetLang("LangMyLocalModItemDialogTitleUpdateConfirm"), GetLang("LangMyLocalModItemDialogBtn1UpdateConfirm"), GetLang("LangMyLocalModItemDialogTitleOpenChangelog"),GetLang("LangDialogBtnCancel"))
             Case 1 '更新
                 FrmVersionMod.UpdateMods({Entry})
             Case 2 '查看更新日志
