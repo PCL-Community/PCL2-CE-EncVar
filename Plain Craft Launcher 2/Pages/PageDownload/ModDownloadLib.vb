@@ -2686,7 +2686,7 @@ Retry:
         Try
             Dim SubLoaders = McInstallLoader(Request, IgnoreDump:=IsEdit)
             If SubLoaders Is Nothing Then Return False
-            Dim Loader As New LoaderCombo(Of String)(If(IsEdit, GetLang("LangModDownloadLibTaskMcModify") GetLang("LangModDownloadLibTaskMcInstall"), Request.TargetVersionName), SubLoaders) With {.OnStateChanged = AddressOf McInstallState}
+            Dim Loader As New LoaderCombo(Of String)(If(IsEdit, GetLang("LangModDownloadLibTaskMcModify", Request.TargetVersionName), GetLang("LangModDownloadLibTaskMcInstall", Request.TargetVersionName)), SubLoaders) With {.OnStateChanged = AddressOf McInstallState}
 
             '启动
             Loader.Start(Request.TargetVersionFolder)
@@ -2779,6 +2779,7 @@ Retry:
         '重复版本检查
         If File.Exists(OutputFolder & Request.TargetVersionName & ".json") AndAlso Not IgnoreDump Then
             Hint("版本 " & Request.TargetVersionName & " 已经存在！", HintType.Critical)
+        End If
         If File.Exists(OutputFolder & Request.TargetVersionName & ".json") Then
             Hint(GetLang("LangModDownloadLibHintMcExist", Request.TargetVersionName), HintType.Critical)
             Throw New CancelledException

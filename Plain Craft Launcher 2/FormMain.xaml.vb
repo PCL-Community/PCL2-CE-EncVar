@@ -167,7 +167,7 @@ Public Class FormMain
         '输出更新日志
         RunInNewThread(
         Sub()
-            If MyMsgBox(Content, GetLang("LangDialogUpdateTo", VersionBaseName & If(VersionBranchName = "Fast Ring", "." + VersionCodeString, ""), GetLang("LangDialogBtnOK"), GetLang("LangDialogBtnUpdateFullLog")) = 2 Then
+            If MyMsgBox(Content, GetLang("LangDialogUpdateTo", VersionBaseName & If(VersionBranchName = "Fast Ring", "." + VersionCodeString, ""), GetLang("LangDialogBtnOK"), GetLang("LangDialogBtnUpdateFullLog"))) = 2 Then
                 OpenWebsite("https://github.com/PCL-Community/PCL2-CE/releases")
             End If
         End Sub, "UpdateLog Output")
@@ -1023,7 +1023,7 @@ Public Class FormMain
                     Case CompType.Shader
                         Return GetLang("LangPageNameShadersDownload") & " - " & Project.TranslatedName
                     Case Else
-                        Return GetLang("LangPageNameResourcesDownload") & " - " Project.TranslatedName
+                        Return GetLang("LangPageNameResourcesDownload") & " - " & Project.TranslatedName
                 End Select
             Case PageType.HelpDetail
                 Dim Entry As HelpEntry = Stack.Additional(0)
