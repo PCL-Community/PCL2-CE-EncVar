@@ -23,7 +23,7 @@ El programa se está ejecutando actualmente en una carpeta temporal, es posible 
 ¡Se recomienda encarecidamente reinstalar el juego después de cambiar a un sistema de 64 bits!</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">Error de Inicialización</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">Error de Ejecución</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">La versión de su .NET Framework es demasiado baja o está dañada, por favor, vuelva a descargar e instalar .NET Framework 4.6.2 desde el sitio web de apertura y vuelva a intentarlo.</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">La versión de su .NET Framework es demasiado baja o está dañada, por favor, vuelva a descargar e instalar .NET Framework 4.8.1 desde el sitio web de apertura y vuelva a intentarlo.</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">Error Desconocido</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">Ocurrió un error desconocido en el programa.</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@ Puedes modificar el método de inicio de sesión en "Propiedades de la Instancia
     <s:String x:Key="LangHintWindowDropFolder">¡Por favor, arrastra un archivo en lugar de una carpeta!</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">El archivo que arrastraste no existe: {0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">¡Por favor, arrastra solo un archivo a la vez!</s:String>
-    <s:String x:Key="LangCrashReport">¡Por favor, envía un problema en "https://github.com/Hex-Dragon/PCL2/issues" para que el desarrollador pueda resolver este problema!</s:String>
+    <s:String x:Key="LangCrashReport">¡Por favor, envía un problema en "https://github.com/PCL-Community/PCL2-CE/issues" para que el desarrollador pueda resolver este problema!</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">Ya existe un archivo de página de inicio personalizado. ¿Quieres sobrescribirlo?</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">Confirmación de Sobrescritura</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">Sobrescribir</s:String>
@@ -1396,7 +1396,7 @@ Los bloqueos del juego no están relacionados comúnmente con el lanzador. Por f
 Confirme que el problema persista en la última versión después de la actualización y luego envíe comentarios.</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">Actualizar</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">No se puede enviar</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">Hay un problema con el entorno de ejecución de PCL. Por favor, intenta reinstalar el ".NET Framework 4.6.2" y luego intenta de nuevo.</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">Hay un problema con el entorno de ejecución de PCL. Por favor, intenta reinstalar el ".NET Framework 4.8.1" y luego intenta de nuevo.</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL no tiene permisos suficientes. Por favor, intenta hacer clic derecho en PCL y selecciona "Ejecutar como administrador".</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">Tu computadora se está quedando sin memoria, lo que impide que PCL funcione. Por favor, cierra algunos programas innecesarios y vuelve a intentarlo.</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">Ocurrió un error debido a un problema con el sistema operativo o la tarjeta gráfica. Por favor, intenta reiniciar PCL.</s:String>

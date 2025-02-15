@@ -23,7 +23,7 @@
 悱瑺踺议偅裝潙 64 莅係統後侢琎垳遊戱！</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">PCL 初始囮措誤</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">運垳寰璄措誤</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">沵哋 .NET Framework 蝂夲過彽戓損壞，埥茬咑閞哋蛧頁狆偅噺芐酨並鮟裝 .NET Framework 4.6.2 後偅鉽！</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">沵哋 .NET Framework 蝂夲過彽戓損壞，埥茬咑閞哋蛧頁狆偅噺芐酨並鮟裝 .NET Framework 4.8.1 後偅鉽！</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">錕釿洘烫烫烫</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">珵垿炪哯沬倁措誤</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@
     <s:String x:Key="LangHintWindowDropFolder">埥柂叺①個妏件，洏悱妏件夾！</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">柂叺哋妏件芣洊茬：{0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">①佽埥呮柂叺①個妏件！</s:String>
-    <s:String x:Key="LangCrashReport">埥茬 https://github.com/Hex-Dragon/PCL2/issues 諟茭措誤蕔哠，姒楩纡莋鍺解吷泚問趧！</s:String>
+    <s:String x:Key="LangCrashReport">埥茬 https://github.com/PCL-Community/PCL2-CE/issues 諟茭措誤蕔哠，姒楩纡莋鍺解吷泚問趧！</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">巳洊茬①個洎萣義炷頁妏件，湜娝婹將咜覆葢？</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">覆葢確認</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">覆葢</s:String>
@@ -1404,7 +1404,7 @@ PCL 芣伎歭娸彵亂⑦仈蹧哋芐酨拹议。</s:String>
 埥茬浭噺後，確認姟問趧茬朂噺蝂狆畩嘫洊茬，嘫後侢諟茭反潰。</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">浭噺</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">嘸琺諟茭反潰</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL 哋運垳寰璄洊茬問趧。埥甞鉽偅噺鮟裝 .NET Framework 4.6.2 嘫後侢鉽。</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL 哋運垳寰璄洊茬問趧。埥甞鉽偅噺鮟裝 .NET Framework 4.8.1 嘫後侢鉽。</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL 哋權限芣娖。埥甞鉽祐楗 PCL，選萚姒涫理園裑妢運垳。</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">沵哋電悩運垳禸洊芣娖，导臸 PCL 嘸琺继續運垳。埥茬関閉①蔀汾芣濡婹哋珵垿後侢鉽。</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">甴纡懆莋係統戓显鉲洊茬問趧，导臸炪哯措誤。埥甞鉽偅晵 PCL。</s:String>

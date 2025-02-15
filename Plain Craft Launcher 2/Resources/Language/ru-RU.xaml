@@ -23,7 +23,7 @@
 Настоятельно рекомендуется переустановить игру после перехода на 64-битную систему!</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">Ошибка инициализации</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">Ошибка во время выполнения</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">Версия вашего .NET Framework слишком низкая или повреждена, пожалуйста, перезагрузите и установите .NET Framework 4.6.2 с официального сайта и попробуйте снова.</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">Версия вашего .NET Framework слишком низкая или повреждена, пожалуйста, перезагрузите и установите .NET Framework 4.8.1 с официального сайта и попробуйте снова.</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">Неизвестная ошибка</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">В программе произошла неизвестная ошибка.</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@
     <s:String x:Key="LangHintWindowDropFolder">Пожалуйста, перетащите файл, а не папку!</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">Файл, который вы перетащили, не существует: {0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">Пожалуйста, перетаскивайте только один файл за раз!</s:String>
-    <s:String x:Key="LangCrashReport">Пожалуйста, отправьте отчет об ошибке по адресу "https://github.com/Hex-Dragon/PCL2/issues" для того, чтобы разработчик смог решить эту проблему!</s:String>
+    <s:String x:Key="LangCrashReport">Пожалуйста, отправьте отчет об ошибке по адресу "https://github.com/PCL-Community/PCL2-CE/issues" для того, чтобы разработчик смог решить эту проблему!</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">Существует файл пользовательской главной страницы. Вы хотите его перезаписать?</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">Подтверждение перезаписи</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">Перезаписать</s:String>
@@ -1403,7 +1403,7 @@ URL: {0}</s:String>
 Подтвердите, что проблема сохраняется в последней версии после обновления, а затем отправьте отзыв.</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">Обновить</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">Невозможно отправить</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">Существует проблема с временем выполнения PCL. Пожалуйста, попробуйте переустановить ".NET Framework 4.6.2" и затем попробуйте снова.</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">Существует проблема с временем выполнения PCL. Пожалуйста, попробуйте переустановить ".NET Framework 4.8.1" и затем попробуйте снова.</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL не имеет достаточных разрешений. Пожалуйста, попробуйте щелкнуть правой кнопкой мыши PCL и выбрать "Запустить от имени администратора".</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">Компьютеру не хватает памяти, что приводит к невозможности запуска PCL. Пожалуйста, закройте некоторые ненужные программы и попробуйте снова.</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">Произошла ошибка из-за проблем с операционной системой или графикой. Пожалуйста, попробуйте перезапустить PCL.</s:String>

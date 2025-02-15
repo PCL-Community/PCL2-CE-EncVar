@@ -23,7 +23,7 @@
 64ビットシステムに再インストールした後、ゲームを行うことを強くお勧めします！</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">PCL 初期化エラー</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">実行環境エラー</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">お使いの.NET Frameworkのバージョンが低すぎるか、損傷しています。開かれたウェブページから.NET Framework 4.6.2を再ダウンロードしてインストールした後、再試行してください！</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">お使いの.NET Frameworkのバージョンが低すぎるか、損傷しています。開かれたウェブページから.NET Framework 4.8.1を再ダウンロードしてインストールした後、再試行してください！</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">未知エラー</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">プログラムに未知のエラーが発生しました</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@
     <s:String x:Key="LangHintWindowDropFolder">ファイルをドラッグしてください。フォルダーではありません！</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">ドラッグされたファイルが存在しません：{0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">一度に一つのファイルをドラッグしてください！</s:String>
-    <s:String x:Key="LangCrashReport">https://github.com/Hex-Dragon/PCL2/issues でエラーレポートを提出してください。これにより作者が問題を解決する手助けになります！</s:String>
+    <s:String x:Key="LangCrashReport">https://github.com/PCL-Community/PCL2-CE/issues でエラーレポートを提出してください。これにより作者が問題を解決する手助けになります！</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">カスタムホームページファイルが既に存在します。これを上書きしますか？</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">上書き確認</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">上書き</s:String>
@@ -1403,7 +1403,7 @@ URL：{0}</s:String>
 更新後、問題が最新版でも続くかどうかを確認し、その後にフィードバックを提出してください。</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">更新</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">フィードバックを提出できません</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL の実行環境に問題があります。.NET Framework 4.6.2 を再インストールしてから再試行してください。</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL の実行環境に問題があります。.NET Framework 4.8.1 を再インストールしてから再試行してください。</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL の権限が不足しています。PCL を右クリックして、管理者として実行を選択してください。</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">コンピュータのメモリが不足しています。不要なプログラムを閉じてから再試行してください。</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">オペレーティングシステムまたはグラフィックカードに問題があるため、エラーが発生しました。PCL を再起動してください。</s:String>

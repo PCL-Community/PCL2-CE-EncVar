@@ -23,7 +23,7 @@ Le programme est actuellement exécuté dans un dossier temporaire, les paramèt
 Il est fortement recommandé de réinstaller le jeu après le passage à un système 64 bits !</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">Erreur d'initialisation de PCL</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">Erreur d'environnement d'exécution</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">Votre version de .NET Framework est trop ancienne ou endommagée. Veuillez télécharger et installer .NET Framework 4.6.2 depuis la page web ouverte, puis réessayez!</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">Votre version de .NET Framework est trop ancienne ou endommagée. Veuillez télécharger et installer .NET Framework 4.8.1 depuis la page web ouverte, puis réessayez!</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">Erreur inconnue</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">Une erreur inconnue s'est produite dans le programme.</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@ Vous pouvez modifier la méthode de connexion dans "Propriétés de l'instance �
     <s:String x:Key="LangHintWindowDropFolder">Veuillez faire glisser un fichier au lieu d'un dossier!</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">Le fichier que vous avez fait glisser n'existe pas : {0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">Veuillez faire glisser un seul fichier à la fois!</s:String>
-    <s:String x:Key="LangCrashReport">Veuillez soumettre un problème sur "https://github.com/Hex-Dragon/PCL2/issues" afin que le développeur puisse résoudre ce problème!</s:String>
+    <s:String x:Key="LangCrashReport">Veuillez soumettre un problème sur "https://github.com/PCL-Community/PCL2-CE/issues" afin que le développeur puisse résoudre ce problème!</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">Un fichier de page d'accueil personnalisé existe déjà. Voulez-vous le remplacer?</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">Confirmation de remplacement</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">Remplacer</s:String>
@@ -1398,7 +1398,7 @@ Les plantages de jeu ne sont généralement pas liés au lanceur. Veuillez ne pa
 Veuillez confirmer que le problème persiste dans la dernière version après la mise à jour, puis envoyez vos commentaires.</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">Mettre à jour</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">Impossible de soumettre</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">Il y a un problème avec l'environnement d'exécution de PCL. Veuillez essayer de réinstaller le ".NET Framework 4.6.2" puis réessayez.</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">Il y a un problème avec l'environnement d'exécution de PCL. Veuillez essayer de réinstaller le ".NET Framework 4.8.1" puis réessayez.</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL n'a pas les permissions suffisantes. Veuillez essayer de faire un clic droit sur PCL et sélectionner "Exécuter en tant qu'administrateur".</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">Votre ordinateur manque de mémoire, ce qui empêche PCL de fonctionner. Veuillez fermer certains programmes inutiles et réessayez.</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">Une erreur s'est produite en raison d'un problème avec le système d'exploitation ou la carte graphique. Veuillez essayer de redémarrer PCL.</s:String>

@@ -44,12 +44,12 @@ Public Class ModLink
 
                         Dim handshake As Byte() = BuildHandshake(_IP, _Port)
                         Await stream.WriteAsync(handshake, 0, handshake.Length)
-                        Log($"[MCPing] Send {String.Join(" ", handshake)}", LogLevel.Debug)
+                        Log($"[MCPing] Send {String.Join(" ", handshake)}", LogLevel.Debug) 'To be implemented
 
                         ' 向服务器发送查询状态信息的数据包
                         Dim statusRequest As Byte() = BuildStatusRequest()
                         Await stream.WriteAsync(statusRequest, 0, statusRequest.Length)
-                        Log($"[MCPing] Send {String.Join(" ", statusRequest)}")
+                        Log($"[MCPing] Send {String.Join(" ", statusRequest)}") 'To be implemented
 
                         ' 读取服务器响应的数据
                         Dim result As New List(Of Byte)
@@ -60,7 +60,7 @@ Public Class ModLink
                             result.AddRange(responseBuffer.Take(bytesRead))
                         End While
 
-                        Log($"[MCPing] Received ({result.Count}) = {String.Join(" ", result)}")
+                        Log($"[MCPing] Received ({result.Count}) = {String.Join(" ", result)}") 'To be implemented
                         ' 将响应数据转换为字符串
                         Dim response As String = Encoding.UTF8.GetString(result.ToArray(), 0, result.Count)
                         Dim i = 0
@@ -69,7 +69,7 @@ Public Class ModLink
                         End While
                         If i = response.Length Then Return New WorldInfo
                         response = response.Substring(i)
-                        Log("[MCPing] Server Response: " & response)
+                        Log("[MCPing] Server Response: " & response) 'To be implemented
 
                         Dim j = JObject.Parse(response)
 
@@ -208,7 +208,7 @@ Public Class ModLink
     ''' 寻找 UPnP 设备并尝试创建一个 UPnP 映射
     ''' </summary>
     Public Shared Async Sub CreateUPnPMapping(Optional LocalPort As Integer = 25565, Optional PublicPort As Integer = 10240)
-        Log($"[UPnP] 尝试创建 UPnP 映射，本地端口：{LocalPort}，远程端口：{PublicPort}，映射名称：{UPnPMappingName}")
+        Log($"[UPnP] 尝试创建 UPnP 映射，本地端口：{LocalPort}，远程端口：{PublicPort}，映射名称：{UPnPMappingName}") 'To be implemented
 
         UPnPPublicPort = PublicPort
         Dim UPnPDiscoverer = New NatDiscoverer()
@@ -220,15 +220,15 @@ Public Class ModLink
             Await UPnPDevice.CreatePortMapAsync(CurrentUPnPMapping)
 
             Await UPnPDevice.CreatePortMapAsync(New Mapping(Protocol.Tcp, LocalPort, PublicPort, "PCL2 Link Lobby"))
-            Hint("UPnP 映射已创建")
+            Hint("UPnP 映射已创建") 'To be implemented
         Catch NotFoundEx As NatDeviceNotFoundException
             UPnPStatus = "Unsupported"
             CurrentUPnPMapping = Nothing
-            Log("[UPnP] 找不到可用的 UPnP 设备")
+            Log("[UPnP] 找不到可用的 UPnP 设备") 'To be implemented
         Catch ex As Exception
             UPnPStatus = "Failed"
             CurrentUPnPMapping = Nothing
-            Log("[UPnP] UPnP 映射创建失败: " + ex.ToString())
+            Log("[UPnP] UPnP 映射创建失败: " + ex.ToString()) 'To be implemented
         End Try
     End Sub
 
@@ -236,6 +236,7 @@ Public Class ModLink
     ''' 尝试移除现有 UPnP 映射记录
     ''' </summary>
     Public Shared Async Sub RemoveUPnPMapping()
+        'To be implemented
         Log($"[UPnP] 尝试移除 UPnP 映射，本地端口：{CurrentUPnPMapping.PrivatePort}，远程端口：{CurrentUPnPMapping.PublicPort}，映射名称：{UPnPMappingName}")
 
         Try
@@ -243,11 +244,11 @@ Public Class ModLink
 
             UPnPStatus = "Disabled"
             CurrentUPnPMapping = Nothing
-            Log("[UPnP] UPnP 映射移除成功")
+            Log("[UPnP] UPnP 映射移除成功") 'To be implemented
         Catch ex As Exception
             UPnPStatus = "Failed"
             CurrentUPnPMapping = Nothing
-            Log("[UPnP] UPnP 映射移除失败: " + ex.ToString())
+            Log("[UPnP] UPnP 映射移除失败: " + ex.ToString()) 'To be implemented
         End Try
     End Sub
 
@@ -263,13 +264,13 @@ Public Class ModLink
 
         For Each java In JavaNames
             Dim JavaProcesses As Process() = Process.GetProcessesByName(java)
-            Log($"[MCDetect] 找到 {java} 进程 {JavaProcesses.Length} 个")
+            Log($"[MCDetect] 找到 {java} 进程 {JavaProcesses.Length} 个") 'To be implemented
 
             If JavaProcesses Is Nothing OrElse JavaProcesses.Length = 0 Then
                 Continue For
             Else
                 For Each p In JavaProcesses
-                    Log("[MCDetect] 检测到 Java 进程，PID: " + p.Id.ToString())
+                    Log("[MCDetect] 检测到 Java 进程，PID: " + p.Id.ToString()) 'To be implemented
                     PIDLookupResult.Add(p.Id.ToString())
                 Next
             End If
@@ -279,18 +280,18 @@ Public Class ModLink
         Try
             If Not PIDLookupResult.Any Then Return res
             Dim ports = PortFinder.GetProcessPort(Integer.Parse(PIDLookupResult.First))
-            Log($"[MCDetect] 获取到端口数量 {ports.Count}")
+            Log($"[MCDetect] 获取到端口数量 {ports.Count}") 'To be implemented
             For Each port In ports
-                Log($"[MCDetect] 找到疑似端口，开始验证：{port}")
+                Log($"[MCDetect] 找到疑似端口，开始验证：{port}") 'To be implemented
                 Dim test As New MCPing("127.0.0.1", port)
                 Dim info = Await test.GetInfo()
                 If Not String.IsNullOrWhiteSpace(info.VersionName) Then
-                    Log($"[MCDetect] 端口 {port} 为有效 Minecraft 世界")
+                    Log($"[MCDetect] 端口 {port} 为有效 Minecraft 世界") 'To be implemented
                     res.Add(info)
                 End If
             Next
         Catch ex As Exception
-            Log(ex, "[MCDetect] 获取端口信息错误", LogLevel.Debug)
+            Log(ex, "[MCDetect] 获取端口信息错误", LogLevel.Debug) 'To be implemented
         End Try
         Return res
     End Function

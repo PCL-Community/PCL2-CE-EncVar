@@ -23,7 +23,7 @@
 게임을 진행하기 전에 64 비트 시스템으로 다시 설치하는 것이 좋습니다!</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">PCL 초기화 오류</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">실행 환경 오류</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">당신의 .NET Framework 버전이 낮거나 손상되었습니다. 열린 웹 페이지에서 .NET Framework 4.6.2를 다시 다운로드하고 설치한 후 다시 시도해 주세요!</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">당신의 .NET Framework 버전이 낮거나 손상되었습니다. 열린 웹 페이지에서 .NET Framework 4.8.1를 다시 다운로드하고 설치한 후 다시 시도해 주세요!</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">알 수 없는 오류</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">프로그램에서 알 수 없는 오류가 발생했습니다.</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@
     <s:String x:Key="LangHintWindowDropFolder">폴더가 아닌 파일을 드래그하세요!</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">드래그한 파일이 존재하지 않습니다: {0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">한 번에 하나의 파일만 드래그하세요!</s:String>
-    <s:String x:Key="LangCrashReport">문제가 발생하면 https://github.com/Hex-Dragon/PCL2/issues에 오류 보고서를 제출해 주세요!</s:String>
+    <s:String x:Key="LangCrashReport">문제가 발생하면 https://github.com/PCL-Community/PCL2-CE/issues에 오류 보고서를 제출해 주세요!</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">이미 사용자 정의 홈 페이지 파일이 존재합니다. 덮어쓰시겠습니까?</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">덮어쓰기 확인</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">덮어쓰기</s:String>
@@ -1391,7 +1391,7 @@ URL: {0}</s:String>
 최신 버전으로 업데이트한 후, 해당 문제가 최신 버전에서도 여전히 존재하는지 확인한 후에 피드백을 제출하세요.</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">업데이트</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">피드백을 제출할 수 없습니다</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL의 실행 환경에 문제가 있습니다. .NET Framework 4.6.2를 재설치한 후 다시 시도하세요.</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL의 실행 환경에 문제가 있습니다. .NET Framework 4.8.1를 재설치한 후 다시 시도하세요.</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL의 권한이 부족합니다. PCL을 마우스 오른쪽 버튼으로 클릭하고 관리자 권한으로 실행을 선택하세요.</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">컴퓨터의 메모리가 부족하여 PCL이 계속 실행될 수 없습니다. 필요하지 않은 프로그램을 종료한 후 다시 시도하세요.</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">운영 체제나 그래픽 카드에 문제가 발생하여 오류가 발생했습니다. PCL을 재시작해 보세요.</s:String>

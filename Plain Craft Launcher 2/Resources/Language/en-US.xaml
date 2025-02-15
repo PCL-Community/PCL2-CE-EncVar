@@ -23,7 +23,7 @@ The program is currently running in a temporary folder, which may prevent the sa
 It is strongly recommended to switch to a 64-bit system before continuing!</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">Initialization Error</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">Runtime Error</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">The installed .NET Framework is outdated or corrupted. Please download and re-install .NET Framework 4.6.2 and try again!</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">The installed .NET Framework is outdated or corrupted. Please download and re-install .NET Framework 4.8.1 and try again!</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">Unknown Error</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">An unknown error occurred in the program.</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">Failed to optimize memory</s:String>
@@ -64,7 +64,7 @@ You can change the login method in "Properties → Settings → Server".</s:Stri
     <s:String x:Key="LangHintWindowDropFolder">Please drag in a file instead of a folder!</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">The file dragged in does not exist: {0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">Please drag only one file at a time!</s:String>
-    <s:String x:Key="LangCrashReport">Please submit an issue at "https://github.com/Hex-Dragon/PCL2/issues" to help the developer resolve the problem!</s:String>
+    <s:String x:Key="LangCrashReport">Please submit an issue at "https://github.com/PCL-Community/PCL2-CE/issues" to help the developer resolve the problem!</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">A custom homepage file already exists. Do you want to override it?</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">Override Confirmation</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">Override</s:String>
@@ -1402,7 +1402,7 @@ Game crashes are generally not related to the launcher. Please do not submit fee
 Please confirm that the issue persists in the latest version after updating, and then submit feedback.</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">Update</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">Unable to Submit</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">There is a problem with the runtime of PCL. Please try reinstalling .NET Framework 4.6.2 and try again. If the installation fails, uninstall newer versions of .NET Framework and try again.</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">There is a problem with the runtime of PCL. Please try reinstalling .NET Framework 4.8.1 and try again. If the installation fails, uninstall newer versions of .NET Framework and try again.</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL does not have sufficient permissions. Please try right-clicking on PCL and select "Run as administrator".</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">Your computer is running out of memory, which causes PCL to be unable to run. Please close some unused programs and try again.</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">An error occurred due to a problem with the operating system or graphics card. Please try to restart PCL.</s:String>

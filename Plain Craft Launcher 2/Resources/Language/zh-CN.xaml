@@ -26,7 +26,7 @@
 非常建议重装为 64 位系统后再进行游戏！</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">PCL 初始化错误</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">运行环境错误</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">你的 .NET Framework 版本过低或损坏，请下载并重新安装 .NET Framework 4.6.2！</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">你的 .NET Framework 版本过低或损坏，请下载并重新安装 .NET Framework 4.8.1！</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">锟斤拷烫烫烫</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">程序出现未知错误</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -68,7 +68,7 @@
     <s:String x:Key="LangHintWindowDropFolder">请拖入一个文件，而非文件夹！</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">拖入的文件不存在：{0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">一次请只拖入一个文件！</s:String>
-    <s:String x:Key="LangCrashReport">请在 https://github.com/Hex-Dragon/PCL2/issues 提交错误报告，以便于作者解决此问题！</s:String>
+    <s:String x:Key="LangCrashReport">请在 https://github.com/PCL-Community/PCL2-CE/issues 提交错误报告，以便于作者解决此问题！</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">已存在一个自定义主页文件，是否要将它覆盖？</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">覆盖确认</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">覆盖</s:String>
@@ -1455,7 +1455,7 @@ PCL 不支持其他乱七八糟的下载协议。</s:String>
 请在更新后，确认该问题在最新版中依然存在，然后再提交反馈。</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">更新</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">无法提交反馈</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL 的运行环境存在问题。请尝试重新安装 .NET Framework 4.6.2 然后再试。若无法安装，请先卸载较新版本的 .NET Framework，然后再尝试安装。</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">PCL 的运行环境存在问题。请尝试重新安装 .NET Framework 4.8.1 然后再试。若无法安装，请先卸载较新版本的 .NET Framework，然后再尝试安装。</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL 的权限不足。请尝试右键 PCL，选择以管理员身份运行。</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">你的电脑运行内存不足，导致 PCL 无法继续运行。请在关闭一部分不需要的程序后再试。</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">由于操作系统或显卡存在问题，导致出现错误。请尝试重启 PCL。</s:String>

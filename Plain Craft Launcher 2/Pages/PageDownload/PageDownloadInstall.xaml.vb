@@ -1267,8 +1267,7 @@ Public Class PageDownloadInstall
         End If
         For Each Version In DlFabricApiLoader.Output
             If Not IsSuitableFabricApi(Version.DisplayName, SelectedMinecraftId) Then Continue For
-            If SelectedFabric Is Nothing Then Return "需要安装 Fabric"
-            Return Nothing
+            If SelectedFabric Is Nothing AndAlso SelectedQuilt Is Nothing Then Return GetLang("LangDownloadInstallFabricOrQuiltNeed")
         Next
         Return GetLang("LangDownloadInstallNoAvailableVersion")
     End Function

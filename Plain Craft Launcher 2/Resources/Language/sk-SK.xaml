@@ -23,7 +23,7 @@ Program sa momentálne spúšťa v dočasnom priečinku a nastavenia, uložené 
 Dôrazne sa odporúča preinštalovať na 64-bitový systém pred pokračovaním v hraní!</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">Initialization Error</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">Chyba za behu</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">Verzia vášho .NET Framework je príliš nízka alebo je poškodená. Prosím, prevezmite si a nainštalujte .NET Framework 4.6.2 z úvodnej webovej stránky a skúste to znova!</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">Verzia vášho .NET Framework je príliš nízka alebo je poškodená. Prosím, prevezmite si a nainštalujte .NET Framework 4.8.1 z úvodnej webovej stránky a skúste to znova!</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">Neznáma chyba</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">V programe došlo k neznámej chybe.</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@ Môžete zmeniť spôsob prihlásenia v "Vlastnosti → Nastavenia → Server".<
     <s:String x:Key="LangHintWindowDropFolder">Presuňte súbor, nie priečinok!</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">Súbor, ktorý ste presunuli, neexistuje: {0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">Presuňte iba jeden súbor naraz! </s:String>
-    <s:String x:Key="LangCrashReport">Prosím, nahlaste chybu na "https://github.com/Hex-Dragon/PCL2/issues", aby ju mohol vyriešiť vývojár!</s:String>
+    <s:String x:Key="LangCrashReport">Prosím, nahlaste chybu na "https://github.com/PCL-Community/PCL2-CE/issues", aby ju mohol vyriešiť vývojár!</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">Súbor s vlastnou domovskou stránkou už existuje. Chcete ho prepísať?</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">Potvrdenie prepísania</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">Prepísať</s:String>
@@ -1403,7 +1403,7 @@ Hry sa krachujú a nie sú spôsobené launcherom. Prosím, neposielajte spätn�
 Prosím, potvrďte, že problém pretrváva v najnovšej verzii po aktualizácii, a potom odosielajte spätnú väzbu.</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">Aktualizovať</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">Nemôže sa odoslať</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">Existuje problém s runtime PCL. Prosím, skúste reinstalovať ".NET Framework 4.6.2" a potom skúste znovu.</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">Existuje problém s runtime PCL. Prosím, skúste reinstalovať ".NET Framework 4.8.1" a potom skúste znovu.</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">PCL nemá dostatočné oprávnenie. Prosím, skúste spustiť PCL s právom "Spustiť ako správca".</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">Váš počítač sa dostáva do situácie, že sa nedostáva pamäte, čo spôsobuje, že PCL nemôže bežať. Prosím, zatvorte niektoré nepotrebné programy a skúste znovu.</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">Nastala chyba kvôli problému s operačným systémom alebo grafickou kartou. Prosím, skúste restartovať PCL.</s:String>

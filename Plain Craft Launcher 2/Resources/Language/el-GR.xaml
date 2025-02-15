@@ -23,7 +23,7 @@
 Συνιστάται ιδιαίτερα η επανεγκατάσταση του παιχνιδιού μετά τη μετάβαση σε σύστημα 64-bit!</s:String>
     <s:String x:Key="LangApplicationDialogTitleInitError">PCL Σφάλμα Αρχικοποίησης</s:String>
     <s:String x:Key="LangApplicationDialogTitleNETWarn">Σφάλμα Εκτέλεσης Περιβάλλοντος</s:String>
-    <s:String x:Key="LangApplicationDialogContentNETWarn">Η έκδοση του .NET Framework που έχετε είναι πολύ χαμηλή ή κατεστραμμένη. Παρακαλούμε κατεβάσετε και εγκαταστήστε ξανά το .NET Framework 4.6.2!</s:String>
+    <s:String x:Key="LangApplicationDialogContentNETWarn">Η έκδοση του .NET Framework που έχετε είναι πολύ χαμηλή ή κατεστραμμένη. Παρακαλούμε κατεβάσετε και εγκαταστήστε ξανά το .NET Framework 4.8.1!</s:String>
     <s:String x:Key="LangApplicationDialogTitleUnknownError">Άγνωστο Σφάλμα</s:String>
     <s:String x:Key="LangApplicationDialogContentUnknownError">Παρουσιάστηκε άγνωστο σφάλμα στο πρόγραμμα.</s:String>
     <s:String x:Key="LangApplicationDialogContentMemReduceFail">内存优化失败</s:String>
@@ -64,7 +64,7 @@
     <s:String x:Key="LangHintWindowDropFolder">Σύρετε ένα αρχείο αντί για ένα φάκελο!</s:String>
     <s:String x:Key="LangHintWindowDropFileNotFound">Το αρχείο που σύρατε δεν υπάρχει: {0}</s:String>
     <s:String x:Key="LangHintWindowDropFileOneFileAtATime">Σύρετε μόνο ένα αρχείο κάθε φορά!</s:String>
-    <s:String x:Key="LangCrashReport">Υποβάλετε ένα πρόβλημα στη διεύθυνση «https://github.com/Hex-Dragon/PCL2/issues», ώστε ο προγραμματιστής να μπορεί να επιλύσει αυτό το πρόβλημα!</s:String>
+    <s:String x:Key="LangCrashReport">Υποβάλετε ένα πρόβλημα στη διεύθυνση «https://github.com/PCL-Community/PCL2-CE/issues», ώστε ο προγραμματιστής να μπορεί να επιλύσει αυτό το πρόβλημα!</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceContent">Υπάρχει ήδη ένα προσαρμοσμένο αρχείο αρχικής σελίδας. Θέλετε να το παρακάμψετε;</s:String>
     <s:String x:Key="LangDialogCustomHomePageReplaceTitle">Επιβεβαίωση Παράκαμψης</s:String>
     <s:String x:Key="LangDialogBtnCustomHomePageReplaceConfirm">Παράκαμψη</s:String>
@@ -1403,7 +1403,7 @@ URL: {0}</s:String>
 Επιβεβαιώστε ότι το πρόβλημα παραμένει στην πιο πρόσφατη έκδοση μετά την ενημέρωση και, στη συνέχεια, υποβάλετε σχόλια.</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackBtnUpdate">Ενημέρωση</s:String>
     <s:String x:Key="LangModBaseDialogUpdateBeforeFeedbackTitle">Δεν Είναι Δυνατή η Υποβολή</s:String>
-    <s:String x:Key="LangModBaseExceptionBadEnvironment">Υπάρχει πρόβλημα με το χρόνο εκτέλεσης του PCL. Δοκιμάστε να εγκαταστήσετε ξανά το «.NET Framework 4.6.2» και μετά δοκιμάστε ξανά.</s:String>
+    <s:String x:Key="LangModBaseExceptionBadEnvironment">Υπάρχει πρόβλημα με το χρόνο εκτέλεσης του PCL. Δοκιμάστε να εγκαταστήσετε ξανά το «.NET Framework 4.8.1» και μετά δοκιμάστε ξανά.</s:String>
     <s:String x:Key="LangModBaseExceptionUnauthorizedAccessException">Το PCL δεν έχει επαρκή άδεια. Δοκιμάστε να κάνετε δεξί κλικ στο PCL και επιλέξτε «Εκτέλεση ως διαχειριστής».</s:String>
     <s:String x:Key="LangModBaseExceptionOutOfMemoryException">Η μνήμη του υπολογιστή σας εξαντλείται, γεγονός που προκαλεί αδυναμία εκτέλεσης του PCL. Κλείστε ορισμένα περιττά προγράμματα και δοκιμάστε ξανά.</s:String>
     <s:String x:Key="LangModBaseExceptionCOMException">Παρουσιάστηκε σφάλμα λόγω προβλήματος με το λειτουργικό σύστημα ή την κάρτα γραφικών. Δοκιμάστε να επανεκκινήσετε το PCL.</s:String>
