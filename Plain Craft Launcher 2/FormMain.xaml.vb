@@ -87,6 +87,12 @@ Public Class FormMain
         '3：BUG+ IMP* FEAT-
         '2：BUG* IMP-
         '1：BUG-
+        If LastVersion < 361 Then '2.10.4 @ 2025.02.22 23:50
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(4, "Cleanroom 自动安装与相关支持"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(3, "修复了始终校验 Libraries 的问题"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(2, "支持检查 Quilt Mod 更新"))
+            FeatureCount += 2
+        End If
         If LastVersion < 360 Then
             FeatureList.Add(New KeyValuePair(Of Integer, String)(5, "支持多收藏夹，允许批量下载和分享"))
             FeatureList.Add(New KeyValuePair(Of Integer, String)(3, "更改 Java Wrapper 启用机制"))
@@ -176,7 +182,7 @@ Public Class FormMain
         '输出更新日志
         RunInNewThread(
         Sub()
-            If MyMsgBox(Content, "PCL 已更新至 " & VersionBaseName & If(VersionBranchName = "Fast Ring", "." + VersionCodeString, ""), "确定", "完整更新日志") = 2 Then
+            If MyMsgBox(Content, "PCL CE 已更新至 " & VersionBaseName & If(VersionBranchName = "Fast Ring", "." + VersionCodeString, ""), "确定", "完整更新日志") = 2 Then
                 OpenWebsite("https://github.com/PCL-Community/PCL2-CE/releases")
             End If
         End Sub, "UpdateLog Output")
@@ -245,6 +251,7 @@ Public Class FormMain
         BtnExtraBack.ShowCheck = AddressOf BtnExtraBack_ShowCheck
         BtnExtraApril.ShowCheck = AddressOf BtnExtraApril_ShowCheck
         BtnExtraShutdown.ShowCheck = AddressOf BtnExtraShutdown_ShowCheck
+        BtnExtraLog.ShowCheck = AddressOf BtnExtraLog_ShowCheck
         BtnExtraApril.ShowRefresh()
         '初始化尺寸改变
         Dim Resizer As New MyResizer(Me)
@@ -641,7 +648,7 @@ Public Class FormMain
         Try
             If PageCurrent = PageType.VersionSetup AndAlso PageCurrentSub = PageSubType.VersionMod Then
                 'Mod 管理自动刷新
-                FrmVersionMod.ReloadModList()
+                FrmVersionMod.ReloadCompFileList()
             ElseIf PageCurrent = PageType.VersionSelect Then
                 '版本选择自动刷新
                 LoaderFolderRun(McVersionListLoader, PathMcFolder, LoaderFolderRunType.RunOnUpdated, MaxDepth:=1, ExtraPath:="versions\")
@@ -775,7 +782,7 @@ Public Class FormMain
                 Exit Sub
             End If
             '安装 Mod
-            If PageVersionMod.InstallMods(FilePathList) Then Exit Sub
+            If PageVersionCompResource.InstallMods(FilePathList) Then Exit Sub
             '处理资源安装
             If PageCurrent = PageType.VersionSetup AndAlso {"zip"}.Any(Function(i) i = Extension) Then
                 Select Case PageCurrentSub
@@ -797,7 +804,7 @@ Public Class FormMain
                         End If
                         CopyFile(FilePath, DestFile)
                         Hint($"已导入 {GetFileNameFromPath(FilePath)}", HintType.Finish)
-                        If FrmVersionResourcePack IsNot Nothing Then RunInUi(Sub() FrmVersionResourcePack.Reload())
+                        If FrmVersionResourcePack IsNot Nothing Then RunInUi(Sub() FrmVersionResourcePack.ReloadCompFileList())
                         Exit Sub
                     Case PageSubType.VersionShader
                         Dim DestFile = PageVersionLeft.Version.PathIndie + "shaderpacks\" + GetFileNameFromPath(FilePath)
@@ -807,7 +814,7 @@ Public Class FormMain
                         End If
                         CopyFile(FilePath, DestFile)
                         Hint($"已导入 {GetFileNameFromPath(FilePath)}", HintType.Finish)
-                        If FrmVersionShader IsNot Nothing Then RunInUi(Sub() FrmVersionShader.Reload())
+                        If FrmVersionShader IsNot Nothing Then RunInUi(Sub() FrmVersionShader.ReloadCompFileList())
                         Exit Sub
                 End Select
             End If
@@ -969,6 +976,10 @@ Public Class FormMain
         ''' 帮助详情。这是一个副页面。
         ''' </summary>
         HelpDetail = 9
+        ''' <summary>
+        ''' 游戏实时日志。这是一个副页面。
+        ''' </summary>
+        GameLog = 10
     End Enum
     ''' <summary>
     ''' 次要页面种类。其数值必须与 StackPanel 中的下标一致。
@@ -980,6 +991,7 @@ Public Class FormMain
         DownloadOptiFine = 5
         DownloadForge = 6
         DownloadNeoForge = 7
+        DownloadCleanroom = 16
         DownloadFabric = 8
         DownloadQuilt = 10
         DownloadLiteLoader = 9
@@ -1022,6 +1034,8 @@ Public Class FormMain
                 Return "版本选择"
             Case PageType.DownloadManager
                 Return "下载管理"
+            Case PageType.GameLog
+                Return "实时日志"
             Case PageType.VersionSetup
                 Return "版本设置 - " & If(PageVersionLeft.Version Is Nothing, "未知版本", PageVersionLeft.Version.Name)
             Case PageType.CompDetail
@@ -1146,11 +1160,12 @@ Public Class FormMain
             Select Case Stack.Page
                 Case PageType.Download
                     If FrmDownloadLeft Is Nothing Then FrmDownloadLeft = New PageDownloadLeft
-                    Try
-                        CType(FrmDownloadLeft.PanItem.Children(SubType), MyListItem).SetChecked(True, True, Stack = PageCurrent)
-                    Catch
-                        CType(FrmDownloadLeft.PanItem.Children(SubType + 1), MyListItem).SetChecked(True, True, Stack = PageCurrent)
-                    End Try
+                    For Each item In FrmDownloadLeft.PanItem.Children
+                        If item.GetType() Is GetType(MyListItem) AndAlso Val(item.tag) = SubType Then
+                            CType(item, MyListItem).SetChecked(True, True, Stack = PageCurrent)
+                            Exit For
+                        End If
+                    Next
                 Case PageType.Setup
                     If FrmSetupLeft Is Nothing Then FrmSetupLeft = New PageSetupLeft
                     CType(FrmSetupLeft.PanItem.Children(SubType), MyListItem).SetChecked(True, True, Stack = PageCurrent)
@@ -1256,6 +1271,10 @@ Public Class FormMain
                 Case PageType.Other '更多
                     If FrmOtherLeft Is Nothing Then FrmOtherLeft = New PageOtherLeft
                     PageChangeAnim(FrmOtherLeft, FrmOtherLeft.PageGet(SubType))
+                Case PageType.GameLog '实时日志
+                    If FrmLogLeft Is Nothing Then FrmLogLeft = New PageLogLeft
+                    If FrmLogLeft Is Nothing Then FrmLogRight = New PageLogRight
+                    PageChangeAnim(FrmLogLeft, FrmLogRight)
                 Case PageType.VersionSelect '版本选择
                     If FrmSelectLeft Is Nothing Then FrmSelectLeft = New PageSelectLeft
                     If FrmSelectRight Is Nothing Then FrmSelectRight = New PageSelectRight
@@ -1470,6 +1489,15 @@ Public Class FormMain
     End Sub
     Public Function BtnExtraShutdown_ShowCheck() As Boolean
         Return HasRunningMinecraft
+    End Function
+
+    '游戏日志
+    Public Sub BtnExtraLog_Click() Handles BtnExtraLog.Click
+        PageChange(PageType.GameLog)
+    End Sub
+    Public Function BtnExtraLog_ShowCheck() As Boolean
+        If FrmLogLeft Is Nothing OrElse FrmLogRight Is Nothing OrElse PageCurrent = PageType.GameLog Then Return False
+        Return FrmLogLeft.ShownLogs.Count > 0
     End Function
 
     ''' <summary>

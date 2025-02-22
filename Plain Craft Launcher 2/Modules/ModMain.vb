@@ -385,6 +385,8 @@ EndHint:
     '页面声明（出于单元测试考虑，初始化页面已转入 FormMain 中）
     Public FrmLaunchLeft As PageLaunchLeft
     Public FrmLaunchRight As PageLaunchRight
+    Public FrmLogLeft As PageLogLeft
+    Public FrmLogRight As PageLogRight
     Public FrmSelectLeft As PageSelectLeft
     Public FrmSelectRight As PageSelectRight
     Public FrmSpeedLeft As PageSpeedLeft
@@ -406,6 +408,7 @@ EndHint:
     Public FrmDownloadLiteLoader As PageDownloadLiteLoader
     Public FrmDownloadForge As PageDownloadForge
     Public FrmDownloadNeoForge As PageDownloadNeoForge
+    Public FrmDownloadCleanroom As PageDownloadCleanroom
     Public FrmDownloadFabric As PageDownloadFabric
     Public FrmDownloadQuilt As PageDownloadQuilt
     Public FrmDownloadMod As PageDownloadMod
@@ -441,12 +444,12 @@ EndHint:
     '版本设置页面声明
     Public FrmVersionLeft As PageVersionLeft
     Public FrmVersionOverall As PageVersionOverall
-    Public FrmVersionMod As PageVersionMod
+    Public FrmVersionMod As PageVersionCompResource
     Public FrmVersionModDisabled As PageVersionModDisabled
     Public FrmVersionScreenshot As PageVersionScreenshot
     Public FrmVersionWorld As PageVersionWorld
-    Public FrmVersionShader As PageVersionShader
-    Public FrmVersionResourcePack As PageVersionResourcePack
+    Public FrmVersionShader As PageVersionCompResource
+    Public FrmVersionResourcePack As PageVersionCompResource
     Public FrmVersionSetup As PageVersionSetup
     Public FrmVersionInstall As PageVersionInstall
 

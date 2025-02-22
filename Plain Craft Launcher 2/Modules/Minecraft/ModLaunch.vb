@@ -24,6 +24,11 @@ Public Module ModLaunch
         ''' 额外的启动参数。
         ''' </summary>
         Public ExtraArgs As New List(Of String)
+        ''' <summary>
+        ''' 是否为 “测试游戏” 按钮启动的游戏。
+        ''' 如果是，则显示游戏实时日志。
+        ''' </summary>
+        Public Test As Boolean = False
     End Class
     ''' <summary>
     ''' 尝试启动 Minecraft。必须在 UI 线程调用。
@@ -1188,6 +1193,12 @@ Retry:
             End If
         End If
 
+        'Cleanroom 检测
+        If McVersionCurrent.Version.HasCleanroom Then
+            '需要至少 Java 21
+            MinVer = If(New Version(1, 21, 0, 0) > MinVer, New Version(1, 21, 0, 0), MinVer)
+        End If
+
         'Fabric 检测
         If McVersionCurrent.Version.HasFabric Then
             If McVersionCurrent.Version.McCodeMain >= 15 AndAlso McVersionCurrent.Version.McCodeMain <= 16 AndAlso McVersionCurrent.Version.McCodeMain <> -1 Then
@@ -1687,6 +1698,9 @@ NextVersion:
         Dim OptiFineCp As String = Nothing
         For Each Library As McLibToken In LibList
             If Library.IsNatives Then Continue For
+            If Library.Name IsNot Nothing AndAlso Library.Name.Contains("com.cleanroommc:cleanroom") Then 'Cleanroom 的主 Jar 必须放在 ClassPath 第一位
+                CpStrings.Insert(0, Library.LocalPath + ";")
+            End If
             If Library.Name IsNot Nothing AndAlso Library.Name = "optifine:OptiFine" Then
                 OptiFineCp = Library.LocalPath
             Else
@@ -2164,7 +2178,6 @@ IgnoreCustomSkin:
         End If
         Loader.Output = GameProcess
         McLaunchProcess = GameProcess
-
         '进程优先级处理
         Try
             GameProcess.PriorityBoostEnabled = True
@@ -2212,8 +2225,16 @@ IgnoreCustomSkin:
         WindowTitle = ArgumentReplace(WindowTitle, False)
 
         '初始化等待
-        Dim Watcher As New Watcher(Loader, McVersionCurrent, WindowTitle)
+        Dim Watcher As New Watcher(Loader, McVersionCurrent, WindowTitle, CurrentLaunchOptions.Test)
         McLaunchWatcher = Watcher
+
+        '显示实时日志
+        If CurrentLaunchOptions.Test Then
+            If FrmLogLeft Is Nothing Then RunInUiWait(Sub() FrmLogLeft = New PageLogLeft)
+            If FrmLogRight Is Nothing Then RunInUiWait(Sub() FrmLogRight = New PageLogRight)
+            FrmLogLeft.Add(Watcher)
+            McLaunchLog("已显示游戏实时日志")
+        End If
 
         '等待
         Do While Watcher.State = Watcher.MinecraftState.Loading
