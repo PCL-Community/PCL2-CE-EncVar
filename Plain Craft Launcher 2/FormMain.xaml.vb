@@ -87,6 +87,17 @@ Public Class FormMain
         '3：BUG+ IMP* FEAT-
         '2：BUG* IMP-
         '1：BUG-
+        If LastVersion < 362 Then '2.10.4 @ 2025.03.08 20:05
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(5, "同步上游 2.9.1 更新内容"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(3, "新功能 - 支持简单的 Mod 等资源查重"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(3, "新功能 - 允许给收藏夹内的项目添加备注"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(3, "其他 - 加了个彩蛋"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(2, "修复 - 切换了收藏夹依然保留了选中状态"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(2, "修复 - 部分 MC 版本的显示更新日志按钮不正常工作"))
+            FeatureList.Add(New KeyValuePair(Of Integer, String)(2, "优化 - 砍掉了版本修改的动画"))
+            FeatureCount += 5
+            BugCount += 2
+        End If
         If LastVersion < 361 Then '2.10.4 @ 2025.02.22 23:50
             FeatureList.Add(New KeyValuePair(Of Integer, String)(4, "Cleanroom 自动安装与相关支持"))
             FeatureList.Add(New KeyValuePair(Of Integer, String)(3, "修复了始终校验 Libraries 的问题"))
@@ -182,7 +193,7 @@ Public Class FormMain
         '输出更新日志
         RunInNewThread(
         Sub()
-            If MyMsgBox(Content, "PCL CE 已更新至 " & VersionBaseName & If(VersionBranchName = "Fast Ring", "." + VersionCodeString, ""), "确定", "完整更新日志") = 2 Then
+            If MyMsgBox(Content, "PCL CE 已更新至 " & VersionBaseName & If(Not VersionBranchName = "Slow Ring", "." + VersionCodeString, ""), "确定", "完整更新日志") = 2 Then
                 OpenWebsite("https://github.com/PCL-Community/PCL2-CE/releases")
             End If
         End Sub, "UpdateLog Output")
@@ -335,6 +346,7 @@ Public Class FormMain
                 DlClientListMojangLoader.Start(1)
                 RunCountSub()
                 ServerLoader.Start(1)
+                RunInNewThread(AddressOf TryClearTaskTemp, "TryClearTaskTemp", ThreadPriority.BelowNormal)
             Catch ex As Exception
                 Log(ex, "初始化加载池运行失败", LogLevel.Feedback)
             End Try
@@ -431,7 +443,7 @@ Public Class FormMain
             Log("[Start] 已从老版本迁移微软登录结果")
         End If
         '输出更新日志
-        If LastVersionCode = 0 Then Exit Sub
+        If LastVersionCode <= 0 Then Exit Sub
         If LowerVersionCode >= VersionCode Then Exit Sub
         ShowUpdateLog(LowerVersionCode)
     End Sub
@@ -631,6 +643,7 @@ Public Class FormMain
     End Sub
     Private Sub FormMain_MouseDown(sender As Object, e As MouseButtonEventArgs) Handles Me.MouseDown
         '鼠标侧键返回上一级
+        If FrmMain.PanMsg.Children.Count > 0 OrElse WaitingMyMsgBox.Any Then Exit Sub '弹窗中（#5513）
         If e.ChangedButton = MouseButton.XButton1 OrElse e.ChangedButton = MouseButton.XButton2 Then TriggerPageBack()
     End Sub
     Private Sub TriggerPageBack()
@@ -1017,6 +1030,7 @@ Public Class FormMain
         OtherVote = 4
         VersionOverall = 0
         VersionSetup = 1
+        VersionExport = 2
         VersionWorld = 3
         VersionScreenshot = 4
         VersionMod = 5
@@ -1179,7 +1193,12 @@ Public Class FormMain
             Select Case Stack.Page
                 Case PageType.VersionSetup
                     If FrmVersionLeft Is Nothing Then FrmVersionLeft = New PageVersionLeft
-                    CType(FrmVersionLeft.PanItem.Children(SubType), MyListItem).SetChecked(True, True, Stack = PageCurrent)
+                    For Each item In FrmVersionLeft.PanItem.Children
+                        If item.GetType() Is GetType(MyListItem) AndAlso Val(item.tag) = SubType Then
+                            CType(item, MyListItem).SetChecked(True, True, Stack = PageCurrent)
+                            Exit For
+                        End If
+                    Next
             End Select
             PageChangeActual(Stack, SubType)
         End If

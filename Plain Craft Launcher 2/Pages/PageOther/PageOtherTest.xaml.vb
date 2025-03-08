@@ -53,7 +53,7 @@ Public Class PageOtherTest
     Public Shared Sub StartCustomDownload(Url As String, FileName As String, Optional Folder As String = Nothing)
         Try
             If String.IsNullOrWhiteSpace(Folder) Then
-                Folder = SelectAs("选择文件保存位置", FileName, Nothing, Nothing)
+                Folder = SelectSaveFile("选择文件保存位置", FileName, Nothing, Nothing)
                 If Not Folder.Contains("\") Then
                     Return
                 End If
@@ -84,7 +84,7 @@ Public Class PageOtherTest
         End Try
     End Sub
     Public Shared Sub Jrrp()
-        Hint("为便于维护，开源内容中不包含百宝箱功能……")
+        Hint("为便于维护，社区版中不包含百宝箱功能……")
     End Sub
     Public Shared Sub RubbishClear()
         RunInUi(
@@ -345,13 +345,13 @@ Public Class PageOtherTest
 
     End Sub
     Public Shared Function GetRandomCave() As String
-        Return "为便于维护，开源内容中不包含百宝箱功能……"
+        Return "为便于维护，社区版中不包含百宝箱功能……"
     End Function
     Public Shared Function GetRandomHint() As String
-        Return "为便于维护，开源内容中不包含百宝箱功能……"
+        Return "为便于维护，社区版中不包含百宝箱功能……"
     End Function
     Public Shared Function GetRandomPresetHint() As String
-        Return "为便于维护，开源内容中不包含百宝箱功能……"
+        Return "为便于维护，社区版中不包含百宝箱功能……"
     End Function
 
     Private Sub TextDownloadUrl_TextChanged(sender As Object, e As TextChangedEventArgs)
