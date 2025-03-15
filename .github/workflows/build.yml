@@ -2,13 +2,18 @@ name: Build
 
 on:
   push:
+    branches:
+      - dev
+
     paths:
       - 'Plain Craft Launcher 2/**'
       - '.github/workflows/**'
+
   pull_request:
     paths:
       - 'Plain Craft Launcher 2/**'
       - '.github/workflows/**'
+
   workflow_dispatch:
 
 jobs:
@@ -21,18 +26,15 @@ jobs:
           - configuration: Beta
             architecture: x64
             os: windows-latest
-          - configuration: Release
-            architecture: x64
-            os: windows-latest
+
           - configuration: Beta
             architecture: ARM64
             os: self-hosted
-          - configuration: Release
-            architecture: ARM64
-            os: self-hosted
+
       fail-fast: false
 
     steps:
+
     - name: Checkout
       uses: actions/checkout@v4
 

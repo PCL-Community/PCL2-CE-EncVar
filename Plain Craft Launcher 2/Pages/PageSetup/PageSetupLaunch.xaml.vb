@@ -175,7 +175,7 @@
     Private Sub BtnSkinDelete_Click(sender As Object, e As EventArgs) Handles BtnSkinDelete.Click
         Try
             File.Delete(PathAppdata & "CustomSkin.png")
-            RadioSkinType0.SetChecked(True, True, True)
+            RadioSkinType0.SetChecked(True, True)
             Hint("离线皮肤已清空！", HintType.Finish)
         Catch ex As Exception
             Log(ex, "清空离线皮肤失败", LogLevel.Msgbox)
@@ -204,11 +204,11 @@
         If LabRamGame Is Nothing OrElse LabRamUsed Is Nothing OrElse FrmMain.PageCurrent <> FormMain.PageType.Setup OrElse FrmSetupLeft.PageID <> FormMain.PageSubType.SetupLaunch Then Exit Sub
         '获取内存情况
         Dim RamGame As Double = GetRam(McVersionCurrent, False)
-        Dim RamTotal As Double = Math.Round(My.Computer.Info.TotalPhysicalMemory / 1024 / 1024 / 1024 * 10) / 10
-        Dim RamAvailable As Double = Math.Round(My.Computer.Info.AvailablePhysicalMemory / 1024 / 1024 / 1024 * 10) / 10
-        Dim RamGameActual As Double = Math.Min(RamGame, RamAvailable)
-        Dim RamUsed As Double = RamTotal - RamAvailable
-        Dim RamEmpty As Double = Math.Round(MathClamp(RamTotal - RamUsed - RamGame, 0, 1000) * 10) / 10
+        Dim RamTotal As Double = Math.Round(My.Computer.Info.TotalPhysicalMemory / 1024 / 1024 / 1024, 1)
+        Dim RamAvailable As Double = Math.Round(My.Computer.Info.AvailablePhysicalMemory / 1024 / 1024 / 1024, 1)
+        Dim RamGameActual As Double = Math.Round(Math.Min(RamGame, RamAvailable), 5)
+        Dim RamUsed As Double = Math.Round(RamTotal - RamAvailable, 5)
+        Dim RamEmpty As Double = Math.Round(MathClamp(RamTotal - RamUsed - RamGame, 0, 1000), 1)
         '设置最大可用内存
         If RamTotal <= 1.5 Then
             SliderRamCustom.MaxValue = Math.Max(Math.Floor((RamTotal - 0.3) / 0.1), 1)
@@ -425,9 +425,36 @@ PreFin:
         Dim SelectedBySetup As String = Setup.Get("LaunchArgumentJavaSelect")
         Try
             For Each Java In Sort(JavaList.Clone(), Function(l, r) l.VersionCode < r.VersionCode)
-                Dim ListItem = New MyComboBoxItem With {.Content = Java.ToString, .ToolTip = Java.PathFolder, .Tag = Java}
+                Dim ItemGrid As New Grid
+                ItemGrid.Children.Add(New TextBlock With {
+                                      .Text = Java.ToString,
+                                      .VerticalAlignment = VerticalAlignment.Center,
+                                      .HorizontalAlignment = HorizontalAlignment.Left})
+                Dim BtnJavaED = New MyIconButton With {
+                                      .Logo = If(Java.IsEnabled, Logo.IconButtonStop, Logo.IconButtonCheck),
+                                      .LogoScale = 1.2,
+                                      .ToolTip = If(Java.IsEnabled, "禁用"， "启用"),
+                                      .MaxHeight = 20,
+                                      .VerticalAlignment = VerticalAlignment.Center,
+                                      .HorizontalAlignment = HorizontalAlignment.Right}
+                ItemGrid.Children.Add(BtnJavaED)
+                Dim ListItem = New MyComboBoxItem With {.Content = ItemGrid, .ToolTip = Java.PathFolder, .Tag = Java}
+                ToolTipService.SetHorizontalOffset(BtnJavaED, 20)
                 ToolTipService.SetHorizontalOffset(ListItem, 400)
                 ComboArgumentJava.Items.Add(ListItem)
+                AddHandler BtnJavaED.Click, Sub()
+                                                Dim TargetJava = JavaList.Find(Function(j) j.PathFolder = Java.PathFolder)
+                                                If TargetJava Is Nothing Then Exit Sub
+                                                Java.IsEnabled = Not Java.IsEnabled
+                                                TargetJava.IsEnabled = Java.IsEnabled
+                                                BtnJavaED.Logo = If(TargetJava.IsEnabled, Logo.IconButtonStop, Logo.IconButtonCheck)
+                                                BtnJavaED.ToolTip = If(TargetJava.IsEnabled, "禁用", "启用")
+                                                Dim NewJavaList As New JArray
+                                                For Each Item In JavaList
+                                                    NewJavaList.Add(Item.ToJson)
+                                                Next
+                                                Setup.Set("LaunchArgumentJavaAll", NewJavaList.ToString(Newtonsoft.Json.Formatting.None))
+                                            End Sub
                 '判断人为选中
                 If SelectedBySetup = "" Then Continue For
                 If JavaEntry.FromJson(GetJson(SelectedBySetup)).PathFolder = Java.PathFolder Then SelectedItem = ListItem

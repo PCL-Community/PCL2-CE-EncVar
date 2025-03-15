@@ -193,7 +193,30 @@
 
     Private Sub ListItemBuild(CompItem As MyListItem)
         CompItem.Type = MyListItem.CheckType.CheckBox
+        Dim CompId = CType(CompItem.Tag, CompProject).Id
+        '----备注----
+        Dim Notes As String = ""
+        CurrentFavTarget.Notes.TryGetValue(CompId, Notes)
+        Dim NoteItem As New Run With {.Foreground = New SolidColorBrush(Color.FromRgb(0, 184, 148))}
+        If Not String.IsNullOrWhiteSpace(Notes) Then
+            NoteItem.Text = $" ({Notes})"
+        End If
+        CompItem.LabTitle.Inlines.Add(NoteItem)
         '----添加按钮----
+        '修改备注按钮
+        Dim Btn_EditNote As New MyIconButton
+        Btn_EditNote.Logo = Logo.IconButtonEdit
+        Btn_EditNote.ToolTip = "修改备注"
+        ToolTipService.SetPlacement(Btn_EditNote, Primitives.PlacementMode.Center)
+        ToolTipService.SetVerticalOffset(Btn_EditNote, 30)
+        ToolTipService.SetHorizontalOffset(Btn_EditNote, 2)
+        AddHandler Btn_EditNote.Click, Sub(sender As Object, e As EventArgs)
+                                           CurrentFavTarget.Notes.TryGetValue(CompId, Notes)
+                                           Dim DesiredNote = MyMsgBoxInput("修改备注", DefaultInput:=Notes)
+                                           CurrentFavTarget.Notes(CompId) = DesiredNote
+                                           NoteItem.Text = If(String.IsNullOrWhiteSpace(DesiredNote), "", $" ({DesiredNote})")
+                                           CompFavorites.Save()
+                                       End Sub
         '删除按钮
         Dim Btn_Delete As New MyIconButton
         Btn_Delete.Logo = Logo.IconButtonLikeFill
@@ -207,13 +230,13 @@
                                          RefreshCardTitle()
                                          RefreshBar()
                                      End Sub
-        CompItem.Buttons = {Btn_Delete}
+        CompItem.Buttons = {Btn_EditNote, Btn_Delete}
         '---操作逻辑---
         '右键查看详细信息界面
         If TypeOf (CompItem.Tag) Is CompProject Then
             AddHandler CompItem.MouseRightButtonUp, Sub(sender As Object, e As EventArgs)
                                                         FrmMain.PageChange(New FormMain.PageStackData With {.Page = FormMain.PageType.CompDetail,
-           .Additional = {CompItem.Tag, New List(Of String), String.Empty, CompModLoaderType.Any}})
+           .Additional = {CompItem.Tag, New List(Of String), String.Empty, CompLoaderType.Any}})
                                                     End Sub
         End If
         '---其它事件---
@@ -332,7 +355,7 @@
                 Exit Sub
             End If
             If 1 <> MyMsgBox($"批量下载功能仍旧处于测试状态{vbCrLf}使用此功能下载模组不会自动下载前置项。{vbCrLf}请在下载前仔细思考自己的需求，并仔细检查自己的选择，避免下载错误导致时间和网络流量的浪费。", "确定使用此功能？", Button1:="继续", Button2:="算了", IsWarn:=True) Then Exit Sub
-            Dim SupportedModLoader As New List(Of CompModLoaderType)
+            Dim SupportedModLoader As New List(Of CompLoaderType)
             Dim LoaderFirstSet As Boolean = True
             Dim HasMod As Boolean = False
             For Each Item In SelectedItemList ' 获取共同支持的 ModLoader
@@ -353,7 +376,7 @@
                 Exit Sub
             End If
             ' 要求选择版本
-            Dim DesiredModLoader As CompModLoaderType = CompModLoaderType.Any
+            Dim DesiredModLoader As CompLoaderType = CompLoaderType.Any
             If HasMod AndAlso SupportedModLoader.Count > 0 Then
                 If SupportedModLoader.Count > 0 Then
                     Dim MSelection As New List(Of IMyRadio)
@@ -388,7 +411,7 @@
                                                                        Try
                                                                            AllFiles.Add(ModComp.CompFilesGet(Item, CompRequest.IsFromCurseForge(Item)).Where(Function(i) i.Type <> CompType.Mod OrElse i.ModLoaders.Contains(DesiredModLoader)).ToList())
                                                                        Catch ex As Exception
-                                                                           Log(ex, $"[CompFavourites] 获取 {Item} 的下载信息失败")
+                                                                           Log(ex, $"获取 {Item} 的下载信息失败", LogLevel.Hint)
                                                                        Finally
                                                                            FinishedTasks += 1
                                                                        End Try
@@ -399,31 +422,41 @@
                                                 End While
                                                 ' 求取共同的版本
                                                 For Each Item In AllFiles
+                                                    Dim Current = GetAllVersionList(Item.Select(Function(i) i.GameVersions).ToList())
+                                                    'Log(Current.Join(","))
                                                     If VersionFirstSet Then
                                                         VersionFirstSet = False
-                                                        SuitVersion = GetAllVersionList(Item.Select(Function(i) i.GameVersions).ToList())
+                                                        SuitVersion = Current
                                                     Else
-                                                        SuitVersion = SuitVersion.Intersect(GetAllVersionList(Item.Select(Function(i) i.GameVersions).ToList())).ToList()
+                                                        SuitVersion = SuitVersion.Intersect(Current).ToList()
+                                                    End If
+                                                    'Log(SuitVersion.Join(","))
+                                                    If SuitVersion.Count = 0 Then
+                                                        Hint("不存在指定加载器并且同版本的资源", HintType.Critical)
+                                                        Ts.Abort()
+                                                        Exit Sub
                                                     End If
                                                 Next
                                                 ' 要求用户选择希望下载的版本
                                                 Dim SelectedVersion = Nothing
                                                 RunInUiWait(Sub()
-                                                                If SuitVersion.Count = 0 Then
-                                                                    Hint("不存在指定加载器并且同版本的资源", HintType.Critical)
-                                                                    Ts.Abort()
-                                                                End If
                                                                 Dim Selection As New List(Of IMyRadio)
                                                                 For Each i In SuitVersion
                                                                     Selection.Add(New MyRadioBox() With {.Text = i})
                                                                 Next
                                                                 SelectedVersion = MyMsgBoxSelect(Selection, "选择期望的游戏版本", Button2:="取消")
-                                                                If SelectedVersion Is Nothing Then Ts.Abort()
+                                                                If SelectedVersion Is Nothing Then
+                                                                    Ts.Abort()
+                                                                    Exit Sub
+                                                                End If
                                                             End Sub)
                                                 Dim SelectedVersionStr = SuitVersion(SelectedVersion)
                                                 Hint($"已选择 {SelectedVersionStr} 版本，下面请选择保存位置")
                                                 Dim SaveFolder As String = SelectFolder()
-                                                If String.IsNullOrWhiteSpace(SaveFolder) Then Ts.Abort()
+                                                If String.IsNullOrWhiteSpace(SaveFolder) Then
+                                                    Ts.Abort()
+                                                    Exit Sub
+                                                End If
                                                 Dim Res As New List(Of NetFile)
                                                 For Each Target In AllFiles
                                                     ' 获取有期望版本号的文件
@@ -431,12 +464,12 @@
                                                     ' 按照发布日期排序
                                                     FinalChoices = FinalChoices.Sort(Function(a As CompFile, b As CompFile) a.ReleaseDate > b.ReleaseDate)
                                                     ' 选择最新版本进行下载
-                                                    Res.Add(New NetFile(FinalChoices.First.DownloadUrls, SaveFolder & FinalChoices.First.FileName))
+                                                    Res.Add(FinalChoices.First.ToNetFile(SaveFolder & FinalChoices.First.FileName))
                                                 Next
                                                 Ts.Output = Res
                                             End Sub) With {.ProgressWeight = 2})
             GetInfoAndDownloadLoader.Add(New LoaderDownload("批量下载合适资源", New List(Of NetFile)) With {.ProgressWeight = 8})
-            Dim CheckLoader As New LoaderCombo(Of List(Of String))($"批量下载资源({GetUuid()})", GetInfoAndDownloadLoader) With {.OnStateChanged = AddressOf DownloadStateSave}
+            Dim CheckLoader As New LoaderCombo(Of List(Of String))($"批量下载资源({GetUuid()})", GetInfoAndDownloadLoader) With {.OnStateChanged = AddressOf LoaderStateChangedHintOnly}
             CheckLoader.Start(SelectedItemList.Select(Function(i) CType(i.Tag, CompProject).Id).ToList())
             LoaderTaskbarAdd(CheckLoader)
             FrmMain.BtnExtraDownload.ShowRefresh()
@@ -580,6 +613,7 @@
 
     Private Sub ComboTargetFav_Selected(sender As Object, e As RoutedEventArgs) Handles ComboTargetFav.SelectionChanged
         If ComboTargetFav.SelectedItem Is Nothing Then Exit Sub
+        Items_SetSelectAll(False)
         Loader.Start(IsForceRestart:=True)
     End Sub
 
