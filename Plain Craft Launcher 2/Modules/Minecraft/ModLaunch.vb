@@ -1392,9 +1392,14 @@ Retry:
         For Each Arg In CurrentLaunchOptions.ExtraArgs
             Arguments += " " & Arg.Trim
         Next
+        '进存档
+        Dim WorldName As String = CurrentLaunchOptions.WorldName
+        If WorldName IsNot Nothing Then
+            Arguments += $" --quickPlaySingleplayer ""{WorldName}"""
+        End If
         '进服
         Dim Server As String = If(String.IsNullOrEmpty(CurrentLaunchOptions.ServerIp), Setup.Get("VersionServerEnter", McVersionCurrent), CurrentLaunchOptions.ServerIp)
-        If Server.Length > 0 Then
+        If WorldName IsNot Nothing AndAlso Server.Length > 0 Then
             If McVersionCurrent.ReleaseTime > New Date(2023, 4, 4) Then
                 'QuickPlay
                 Arguments += $" --quickPlayMultiplayer ""{Server}"""
@@ -1409,11 +1414,6 @@ Retry:
                 End If
                 If McVersionCurrent.Version.HasOptiFine Then Hint("OptiFine 与自动进入服务器可能不兼容，有概率导致材质丢失甚至游戏崩溃！", HintType.Critical)
             End If
-        End If
-        '进存档
-        Dim WorldName As String = CurrentLaunchOptions.WorldName
-        If WorldName IsNot Nothing Then
-            Arguments += $" --quickPlaySingleplayer ""{WorldName}"""
         End If
         '自定义
         Dim ArgumentGame As String = Setup.Get("VersionAdvanceGame", Version:=McVersionCurrent)
