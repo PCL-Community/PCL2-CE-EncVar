@@ -11,6 +11,11 @@ Public Module ModLaunch
         ''' </summary>
         Public ServerIp As String = Nothing
         ''' <summary>
+        ''' 指定在启动之后进入的存档名称。
+        ''' 默认值：Nothing。使用版本设置的值。
+        ''' </summary>
+        Public WorldName As String = Nothing
+        ''' <summary>
         ''' 将启动脚本保存到该地址，然后取消启动。这同时会改变启动时的提示等。
         ''' 默认值：Nothing。不保存。
         ''' </summary>
@@ -1404,6 +1409,11 @@ Retry:
                 End If
                 If McVersionCurrent.Version.HasOptiFine Then Hint("OptiFine 与自动进入服务器可能不兼容，有概率导致材质丢失甚至游戏崩溃！", HintType.Critical)
             End If
+        End If
+        '进存档
+        Dim WorldName As String = CurrentLaunchOptions.WorldName
+        If WorldName IsNot Nothing Then
+            Arguments += $" --quickPlaySingleplayer ""{WorldName}"""
         End If
         '自定义
         Dim ArgumentGame As String = Setup.Get("VersionAdvanceGame", Version:=McVersionCurrent)
