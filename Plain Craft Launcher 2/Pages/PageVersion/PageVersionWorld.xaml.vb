@@ -7,13 +7,7 @@ Public Class PageVersionWorld
 
     Private Sub RefreshSelf() Implements IRefreshable.Refresh
         Refresh()
-        Dim VersionJson = PageVersionLeft.Version.JsonObject
-        For Each Argument In VersionJson("arguments")("game")
-            If Argument.Contains("value") AndAlso Argument("value").GetType().IsArray AndAlso Argument("value").AsEnumerable()(0) = "--quickPlaySingleplayer" Then
-                QuickPlayFeature = True
-                Exit For
-            End If
-        Next
+        CheckQuickPlay()
     End Sub
     Public Shared Sub Refresh()
         If FrmVersionWorld IsNot Nothing Then FrmVersionWorld.Reload()
@@ -32,13 +26,7 @@ Public Class PageVersionWorld
         '非重复加载部分
         If IsLoad Then Exit Sub
         IsLoad = True
-        Dim VersionJson = PageVersionLeft.Version.JsonObject
-        For Each Argument In VersionJson("arguments")("game")
-            If Argument.Contains("value") AndAlso Argument("value").GetType().IsArray AndAlso Argument("value").AsEnumerable()(0) = "--quickPlaySingleplayer" Then
-                QuickPlayFeature = True
-                Exit For
-            End If
-        Next
+        CheckQuickPlay()
     End Sub
 
     Dim FileList As List(Of String) = New List(Of String)
@@ -67,12 +55,7 @@ Public Class PageVersionWorld
         End If
     End Sub
 
-    Private Sub LoadFileList()
-        Log("[World] 刷新存档文件")
-        FileList.Clear()
-        FileList = Directory.EnumerateDirectories(WorldPath).ToList()
-        If ModeDebug Then Log("[World] 共发现 " & FileList.Count & " 个存档文件夹", LogLevel.Debug)
-        PanList.Children.Clear()
+    Private Sub CheckQuickPlay()
         Dim VersionJson = PageVersionLeft.Version.JsonObject
         For Each Argument In VersionJson("arguments")("game")
             If Argument.Type = JTokenType.Object AndAlso JObject.FromObject(Argument).ContainsKey("value") AndAlso Argument("value").ToString().Contains("--quickPlaySingleplayer") Then
@@ -80,6 +63,15 @@ Public Class PageVersionWorld
                 Exit For
             End If
         Next
+    End Sub
+
+    Private Sub LoadFileList()
+        Log("[World] 刷新存档文件")
+        FileList.Clear()
+        FileList = Directory.EnumerateDirectories(WorldPath).ToList()
+        If ModeDebug Then Log("[World] 共发现 " & FileList.Count & " 个存档文件夹", LogLevel.Debug)
+        PanList.Children.Clear()
+        CheckQuickPlay()
 
         If ModeDebug Then
             If QuickPlayFeature Then
